@@ -31,7 +31,7 @@ public class ArtsmiaController {
     private Button btnCalcolaPercorso;
 
     @FXML
-    private ComboBox<?> boxRuolo;
+    private ComboBox<String> boxRuolo;
 
     @FXML
     private TextField txtArtista;
@@ -41,24 +41,43 @@ public class ArtsmiaController {
 
     @FXML
     void doArtistiConnessi(ActionEvent event) {
-    	txtResult.clear();
-    	txtResult.appendText("Calcola artisti connessi");
+    	String role = this.boxRuolo.getValue();
+    	if(role=="") {
+    		this.txtResult.setText("Devi inserire un ruolo!");
+    		return;
+    	}
+    	this.txtResult.appendText(this.model.artistiAdiacenti(role));
     }
 
     @FXML
     void doCalcolaPercorso(ActionEvent event) {
-    	txtResult.clear();
-    	txtResult.appendText("Calcola percorso");
+    	String stringaId = this.txtArtista.getText();
+    	int id = 0;
+    	try {
+    		id = Integer.parseInt(stringaId);
+    	}
+    	catch(NumberFormatException nbe) {
+    		this.txtResult.setText("Inserisci l'identificativo di un artista!");
+    		return;
+    	}
+    	
+    	this.txtResult.appendText(this.model.cercaCammino(id));
     }
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
     	txtResult.clear();
-    	txtResult.appendText("Crea grafo");
+    	String role = this.boxRuolo.getValue();
+    	if(role=="") {
+    		this.txtResult.setText("Devi inserire un ruolo!");
+    		return;
+    	}
+    	this.txtResult.setText(this.model.creaGrafo(role));
     }
 
     public void setModel(Model model) {
     	this.model = model;
+    	this.boxRuolo.getItems().addAll(this.model.getRole());
     }
 
     
