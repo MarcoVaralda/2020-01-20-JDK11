@@ -79,6 +79,7 @@ public class Model {
 		result += "\n\nCammino trovato:\n";
 		for(Artist a : this.soluzioneMigliore)
 			result += a+"\n";
+		result += "Con numero di esposizioni: "+this.pesoArco;
 		
 		return result;
 	}
