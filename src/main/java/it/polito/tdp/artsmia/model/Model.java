@@ -103,9 +103,9 @@ public class Model {
 				ricorsione(nuovaParziale);
 			}
 			else if(peso==this.pesoArco && !parziale.contains(vicino)) { // Controllo che il peso dell'arco sia uguale a quelli precedenti
-				List<Artist> nuovaParziale = new ArrayList<>(parziale);
-				nuovaParziale.add(vicino);
-				ricorsione(nuovaParziale);
+					List<Artist> nuovaParziale = new ArrayList<>(parziale);
+					nuovaParziale.add(vicino);
+					ricorsione(nuovaParziale);
 			}
 		}
 	}
